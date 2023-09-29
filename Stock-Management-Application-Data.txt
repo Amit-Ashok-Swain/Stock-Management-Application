@@ -1,0 +1,441 @@
+
+
+1. Create the Stocks Table:
+
+   This query creates the Stocks table with the required columns.
+
+   CREATE TABLE Stocks (
+       stockId INT PRIMARY KEY AUTO_INCREMENT,
+       stockName VARCHAR(100) UNIQUE,
+       stockPrice DOUBLE,
+       stockOwnerCount INT,
+       stockType VARCHAR(50),
+       stockMarketCap DOUBLE,
+       stockBirthTimestamp TIMESTAMP
+   );
+   
+
+   The stock_id is set as the primary key, and it auto-increments. The stock_name is marked as unique to ensure it's unique across records.
+
+2. Insert Data:
+   
+INSERT INTO Stocks (stock_name, stock_price, stock_owner_count, stock_type, stock_market_cap, stock_birth_time_stamp)
+VALUES ('Apple Inc.', 150.25, 1000, 'INFORMATION_TECHNOLOGY', 2200000000, '2023-09-28 10:00:00'),
+       ('Tesla Inc.', 750.50, 800, 'CONSUMER_DISCRETIONARY', 1200000000, '2023-09-28 09:30:00'),
+       ('Microsoft Corp.', 300.75, 1200, 'INFORMATION_TECHNOLOGY', 1800000000, '2023-09-27 14:15:00'),
+       ('Amazon.com Inc.', 3500.00, 1500, 'CONSUMER_DISCRETIONARY', 2500000000, '2023-09-27 16:45:00'),
+       ('Alphabet Inc.', 2800.50, 900, 'INFORMATION_TECHNOLOGY', 2000000000, '2023-09-27 11:30:00'),
+       ('Facebook Inc.', 340.25, 1100, 'COMMUNICATION_SERVICES', 1600000000, '2023-09-28 12:45:00'),
+       ('Pfizer Inc.', 45.75, 900, 'HEALTHCARE', 600000000, '2023-09-28 11:30:00'),
+       ('Johnson & Johnson', 150.00, 700, 'HEALTHCARE', 1000000000, '2023-09-28 10:15:00'),
+       ('JPMorgan Chase & Co.', 160.50, 1100, 'FINANCIAL', 2000000000, '2023-09-28 15:30:00'),
+       ('Goldman Sachs Group Inc.', 375.25, 800, 'FINANCIAL', 800000000, '2023-09-28 14:00:00'),
+       ('Exxon Mobil Corp.', 50.75, 900, 'ENERGY', 300000000, '2023-09-28 09:45:00'),
+       ('Chevron Corp.', 110.00, 800, 'ENERGY', 500000000, '2023-09-28 08:30:00'),
+       ('Boeing Co.', 190.25, 700, 'INDUSTRIALS', 1000000000, '2023-09-28 13:15:00'),
+       ('General Electric Co.', 80.50, 600, 'INDUSTRIALS', 600000000, '2023-09-28 12:00:00'),
+       ('Procter & Gamble Co.', 135.75, 800, 'CONSUMER_STAPLES', 900000000, '2023-09-28 11:45:00'),
+       ('Dow Inc.', 70.25, 700, 'MATERIALS', 700000000, '2023-09-28 10:30:00'),
+       ('Simon Property Group Inc.', 110.75, 600, 'REAL_ESTATE', 800000000, '2023-09-28 14:45:00'),
+       ('Exxon Mobil', 50.75, 500, 'ENERGY', 750000000, '2023-09-28 09:45:00'),
+       ('Alcoa Corporation', 35.20, 300, 'MATERIALS', 420000000, '2023-09-28 11:30:00'),
+       ('Johnson & Johnson', 150.60, 1200, 'HEALTHCARE', 1807200000, '2023-09-27 16:20:00'),
+       ('Google LLC', 2750.80, 1500, 'INFORMATION_TECHNOLOGY', 4126200000, '2023-09-24 09:00:00'),
+       ('Duke Energy Corp.', 95.30, 400, 'UTILITIES', 381200000, '2023-09-24 12:45:00'),
+       ('Bitcoin', 47000.00, 10000, 'CRYPTO_CURRENCY', 4700000000, '2023-09-22 09:30:00'),
+       ('Delta Air Lines, Inc.', 40.75, 550, 'TRANSPORTATION', 223625000, '2023-09-22 10:15:00'),
+       ('The Walt Disney Company', 175.60, 950, 'ENTERTAINMENT', 1668200000, '2023-09-21 13:45:00');
+
+   This query inserts three sample stock records into the `Stocks` table.
+
+3. Select All Stocks Above a Certain Market Cap:
+
+   SELECT * FROM Stocks WHERE stock_market_cap > 2000000000;
+   
+
+   This query selects all stocks with a market capitalization greater than 2 billion.
+
+
+4. Update Stock Market Cap by Stock ID:
+
+   
+   UPDATE Stocks SET stock_market_cap = 2600000000 WHERE stock_id = 2;
+   
+
+   This query updates the market capitalization of the stock with stock_id equal to 2.
+
+
+5. Delete Stocks Based on Owner Count:
+
+   
+   DELETE FROM Stocks WHERE stock_owner_count <= 900;
+   
+
+   This query deletes stocks where the owner count is less than or equal to 900.
+
+
+6. Modify Stock Type by Stock ID:
+
+   
+   UPDATE Stocks SET stock_type = 'REAL_ESTATE' WHERE stock_id = 1;
+   
+
+   This query modifies the stock type of the stock with stockId equal to 1.
+
+
+7. Update Stock Information by Stock ID:
+
+   
+   UPDATE Stocks
+   SET stock_name = 'Google LLC',
+       stock_price = 2800.75,
+       stock_birth_time_stamp = '2023-09-27 16:30:00'
+   WHERE stock_id = 3;
+
+
+   This query updates various attributes of the stock with `stockId` equal to 3.
+
+
+
+8. Select Stocks by Stock Type:
+
+   Retrieve stocks of a specific type, e.g., all stocks in the "HEALTHCARE" category:
+
+   
+   SELECT * FROM Stocks WHERE stock_type = 'REAL_ESTATE';
+
+   
+
+9. Update Stock Price by Stock Name:
+
+   Update the stock price for a specific stock by its name:
+
+   
+   UPDATE Stocks SET stock_price = 500.75 WHERE stock_name = 'Apple Inc.';
+
+   
+
+10. Delete Stocks with Low Market Cap:
+
+   Delete stocks with a market capitalization less than a specified value, e.g., 2 billion:
+
+   
+   DELETE FROM Stocks WHERE stock_market_cap < 2000000000;
+   
+
+11. Count Stocks by Stock Type:
+
+   Count the number of stocks in each stock type:
+
+   
+   SELECT stock_type, COUNT(*) AS count FROM Stocks GROUP BY stock_type;
+   
+
+12. Find the Highest Priced Stock:
+
+   Retrieve the stock with the highest stock price:
+
+   
+   SELECT * FROM Stocks WHERE stock_price = (SELECT MAX(stock_price) FROM Stocks);
+   
+
+13. Update Stock Owner Count by Stock Type:
+
+   Update the owner count for all stocks of a specific type:
+
+   
+ UPDATE Stocks SET stock_owner_count = 1300 WHERE stock_type = 'INFORMATION_TECHNOLOGY';
+   
+
+14. Delete All Stock Records:
+
+   Delete all records from the Stocks table:
+
+   
+   DELETE FROM Stocks;
+   
+
+15. Find Stocks with Birth Timestamp in a Date Range:
+
+   Retrieve stocks with a birth timestamp within a specific date range:
+
+   
+   SELECT * FROM Stocks WHERE stock_birth_time_stamp BETWEEN '2023-09-27 00:00:00' AND '2023-09-28 23:59:59';
+   
+
+16. Update Stock Name by Stock ID:
+
+    Update the stock name for a specific stock by its ID:
+
+    
+    UPDATE Stocks SET stock_name = 'Meta Platforms, Inc.' WHERE stock_id = 4;
+
+
+17. Retrieve All Stocks:
+
+    
+    SELECT * FROM Stocks;
+    
+
+18. Retrieve Stocks by Type (e.g., Technology):
+
+    
+    SELECT * FROM Stocks WHERE stock_type = 'INFORMATION_TECHNOLOGY';
+    
+
+19. Retrieve Stocks with Price Greater Than a Certain Amount (e.g., $200):
+
+    
+    SELECT * FROM Stocks WHERE stock_price > 200.00;
+    
+
+20. Retrieve Stocks Created Before a Specific Date and Time:
+
+    
+    SELECT * FROM Stocks WHERE stock_birth_time_stamp < '2023-09-28 12:00:00';
+    
+
+21. Update Stock Price (e.g., increase Apple Inc.'s price):
+
+    
+    UPDATE Stocks SET stock_price = 160.00 WHERE stock_name = 'Apple Inc.';
+    
+
+22. Increase Stock Owner Count (e.g., add 100 owners to Tesla Inc.):
+
+    
+    UPDATE Stocks SET stock_owner_count = stock_owner_count + 100 WHERE stock_name = 'Tesla Inc.';
+   
+
+23. Delete a Stock Entry (e.g., remove Microsoft Corp.):
+
+    
+    DELETE FROM Stocks WHERE stock_name = 'Microsoft Corp.';
+    
+
+24. Calculate Total Market Cap of All Stocks:
+
+    
+    SELECT SUM(stock_market_cap) AS total_market_cap FROM Stocks;
+   
+
+25. Find the Stock with the Highest Price:
+
+    SELECT * FROM Stocks ORDER BY stock_price DESC LIMIT 1;
+    
+
+26. Find the Stock with the Lowest Price:
+
+    
+    SELECT * FROM Stocks ORDER BY stock_price ASC LIMIT 1;
+    
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[
+  {
+    "stockName": "Reliance Industries Ltd.",
+    "stockPrice": 2500.00,
+    "stockOwnerCount": 1200,
+    "stockType": "ENERGY",
+    "stockMarketCap": 2000000000,
+    "stockBirthTimeStamp": "2023-09-28 10:00:00"
+  },
+  {
+    "stockName": "Tata Consultancy Services Ltd.",
+    "stockPrice": 3200.50,
+    "stockOwnerCount": 1500,
+    "stockType": "INFORMATION_TECHNOLOGY",
+    "stockMarketCap": 1800000000,
+    "stockBirthTimeStamp": "2023-09-28T09:30:00"
+  },
+  {
+    "stockName": "HDFC Bank Ltd.",
+    "stockPrice": 1500.75,
+    "stockOwnerCount": 1800,
+    "stockType": "FINANCIALS",
+    "stockMarketCap": 2200000000,
+    "stockBirthTimeStamp": "2023-09-27T14:15:00"
+  },
+  {
+    "stockName": "Infosys Ltd.",
+    "stockPrice": 3400.00,
+    "stockOwnerCount": 900,
+    "stockType": "INFORMATION_TECHNOLOGY",
+    "stockMarketCap": 1600000000,
+    "stockBirthTimeStamp": "2023-09-28T12:45:00"
+  },
+  {
+    "stockName": "ICICI Bank Ltd.",
+    "stockPrice": 750.50,
+    "stockOwnerCount": 1000,
+    "stockType": "FINANCIALS",
+    "stockMarketCap": 1200000000,
+    "stockBirthTimeStamp": "2023-09-28T11:30:00"
+  },
+  {
+    "stockName": "Hindustan Unilever Ltd.",
+    "stockPrice": 2100.25,
+    "stockOwnerCount": 1100,
+    "stockType": "CONSUMER_STAPLES",
+    "stockMarketCap": 900000000,
+    "stockBirthTimeStamp": "2023-09-28T10:15:00"
+  },
+  {
+    "stockName": "Tata Motors Ltd.",
+    "stockPrice": 450.75,
+    "stockOwnerCount": 800,
+    "stockType": "AUTOMOBILE",
+    "stockMarketCap": 500000000,
+    "stockBirthTimeStamp": "2023-09-28T15:30:00"
+  },
+  {
+    "stockName": "Adani Ports and Special Economic Zone Ltd.",
+    "stockPrice": 180.25,
+    "stockOwnerCount": 600,
+    "stockType": "INFRASTRUCTURE",
+    "stockMarketCap": 700000000,
+    "stockBirthTimeStamp": "2023-09-28T14:00:00"
+  },
+  {
+    "stockName": "Bajaj Finance Ltd.",
+    "stockPrice": 350.75,
+    "stockOwnerCount": 1000,
+    "stockType": "FINANCIALS",
+    "stockMarketCap": 1800000000,
+    "stockBirthTimeStamp": "2023-09-28T09:45:00"
+  },
+  {
+    "stockName": "Axis Bank Ltd.",
+    "stockPrice": 650.00,
+    "stockOwnerCount": 1200,
+    "stockType": "FINANCIALS",
+    "stockMarketCap": 1600000000,
+    "stockBirthTimeStamp": "2023-09-28T08:30:00"
+  },
+  {
+    "stockName": "ITC Ltd.",
+    "stockPrice": 220.25,
+    "stockOwnerCount": 900,
+    "stockType": "CONSUMER_STAPLES",
+    "stockMarketCap": 800000000,
+    "stockBirthTimeStamp": "2023-09-28T13:15:00"
+  },
+  {
+    "stockName": "Sun Pharmaceutical Industries Ltd.",
+    "stockPrice": 750.60,
+    "stockOwnerCount": 1000,
+    "stockType": "HEALTHCARE",
+    "stockMarketCap": 900000000,
+    "stockBirthTimeStamp": "2023-09-28T12:00:00"
+  },
+  {
+    "stockName": "Hindalco Industries Ltd.",
+    "stockPrice": 160.50,
+    "stockOwnerCount": 700,
+    "stockType": "MATERIALS",
+    "stockMarketCap": 1200000000,
+    "stockBirthTimeStamp": "2023-09-28T11:45:00"
+  },
+  {
+    "stockName": "Tata Steel Ltd.",
+    "stockPrice": 550.00,
+    "stockOwnerCount": 800,
+    "stockType": "MATERIALS",
+    "stockMarketCap": 800000000,
+    "stockBirthTimeStamp": "2023-09-28T10:30:00"
+  },
+  {
+    "stockName": "Wipro Ltd.",
+    "stockPrice": 190.75,
+    "stockOwnerCount": 600,
+    "stockType": "INFORMATION_TECHNOLOGY",
+    "stockMarketCap": 700000000,
+    "stockBirthTimeStamp": "2023-09-28T14:45:00"
+  },
+  {
+    "stockName": "Tata Power Company Ltd.",
+    "stockPrice": 85.20,
+    "stockOwnerCount": 300,
+    "stockType": "ENERGY",
+    "stockMarketCap": 420000000,
+    "stockBirthTimeStamp": "2023-09-28T16:45:00"
+  },
+  {
+    "stockName": "Bharat Petroleum Corporation Ltd.",
+    "stockPrice": 70.60,
+    "stockOwnerCount": 1200,
+    "stockType": "ENERGY",
+    "stockMarketCap": 1600000000,
+    "stockBirthTimeStamp": "2023-09-29T10:00:00"
+  },
+  {
+    "stockName": "Coal India Ltd.",
+    "stockPrice": 120.00,
+    "stockOwnerCount": 900,
+    "stockType": "MINING",
+    "stockMarketCap": 2200000000,
+    "stockBirthTimeStamp": "2023-09-29T09:30:00"
+  },
+  {
+    "stockName": "Bharti Airtel Ltd.",
+    "stockPrice": 340.50,
+    "stockOwnerCount": 1100,
+    "stockType": "COMMUNICATION_SERVICES",
+    "stockMarketCap": 1800000000,
+    "stockBirthTimeStamp": "2023-09-29T14:15:00"
+  },
+  {
+    "stockName": "Mahindra & Mahindra Ltd.",
+    "stockPrice": 850.25,
+    "stockOwnerCount": 800,
+    "stockType": "AUTOMOBILE",
+    "stockMarketCap": 1200000000,
+    "stockBirthTimeStamp": "2023-09-29T12:45:00"
+  },
+  {
+    "stockName": "HCL Technologies Ltd.",
+    "stockPrice": 450.50,
+    "stockOwnerCount": 1100,
+    "stockType": "INFORMATION_TECHNOLOGY",
+    "stockMarketCap": 2000000000,
+    "stockBirthTimeStamp": "2023-09-29T11:30:00"
+  },
+  {
+    "stockName": "Larsen & Toubro Ltd.",
+    "stockPrice": 220.25,
+    "stockOwnerCount": 900,
+    "stockType": "INFRASTRUCTURE",
+    "stockMarketCap": 1600000000,
+    "stockBirthTimeStamp": "2023-09-29T10:15:00"
+  },
+  {
+    "stockName": "Hero MotoCorp Ltd.",
+    "stockPrice": 450.75,
+    "stockOwnerCount": 800,
+    "stockType": "AUTOMOBILE",
+    "stockMarketCap": 500000000,
+    "stockBirthTimeStamp": "2023-09-29T15:30:00"
+  },
+  {
+    "stockName": "Hindustan Zinc Ltd.",
+    "stockPrice": 180.25,
+    "stockOwnerCount": 600,
+    "stockType": "MATERIALS",
+    "stockMarketCap": 700000000,
+    "stockBirthTimeStamp": "2023-09-29T14:00:00"
+  },
+  {
+    "stockName": "Maruti Suzuki India Ltd.",
+    "stockPrice": 750.75,
+    "stockOwnerCount": 1000,
+    "stockType": "AUTOMOBILE",
+    "stockMarketCap": 1800000000,
+    "stockBirthTimeStamp": "2023-09-29T09:45:00"
+  }
+]
+
+
+
