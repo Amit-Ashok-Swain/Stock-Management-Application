@@ -1,12 +1,11 @@
 package com.example.geekster.project.StockManagementApplication.Service;
 
-
-import com.example.geekster.project.StockManagementApplication.Model.Stock;
-import com.example.geekster.project.StockManagementApplication.Model.StockType;
-import com.example.geekster.project.StockManagementApplication.Repository.IStockRepo;
-
+import com.example.StockManagementApplication.model.Stock;
+import com.example.StockManagementApplication.model.StockType;
+import com.example.StockManagementApplication.repository.IStockRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,12 +14,12 @@ import java.util.List;
 @Service
 public class StockService {
     @Autowired
-
-    IStockRepo stockRepo;
+    IStockRepository stockRepo;
 
     //custom finder
     public List<Stock> getStocksByType(StockType stockType) {
-        return stockRepo.findByStockType(stockType);
+
+        return stockRepo.findBy();
     }
 
     //implicit methods in crudRepo
@@ -66,7 +65,7 @@ public class StockService {
         String enumValue = stockType.name();
         stockRepo.modifyStockTypeById(enumValue, id);
 
-        throw new IllegalStateException("Testing done by Amit");
+        throw new IllegalStateException("Mainak testing transactional ");
 
     }
 
