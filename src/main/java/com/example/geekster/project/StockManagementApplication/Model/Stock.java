@@ -7,14 +7,23 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
-@Table(name = "Stocks")
+@Table
 public class Stock {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer stockId;
 
     @Column(unique = true)
@@ -24,10 +33,11 @@ public class Stock {
 
     private Integer stockOwnerCount;
 
-    @Enumerated(EnumType.STRING)
-    private StockType stockType;
+    @Enumerated(EnumType.STRING)//only for watching strings in DB.
+    private StockType stockType;//CAN ONLY BE 0,1,2
 
     private Double stockMarketCap;
 
     private LocalDateTime stockBirthTimeStamp;
+
 }
